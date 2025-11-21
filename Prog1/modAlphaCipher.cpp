@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <iostream>
 
-// Простой конструктор cipher_error - убрали сложную логику
 modAlphaCipher::modAlphaCipher(const std::wstring& skey)
 {
     for (unsigned i = 0; i < numAlpha.size(); i++) {
@@ -93,7 +92,6 @@ std::wstring modAlphaCipher::getValidKey(const std::wstring& s)
         }
     }
     
-    // Проверка на вырожденный ключ
     bool allSame = true;
     for (size_t i = 1; i < tmp.size(); i++) {
         if (tmp[i] != tmp[0]) {

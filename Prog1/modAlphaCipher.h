@@ -25,12 +25,12 @@ private:
     std::wstring getValidKey(const std::wstring& s);
     std::wstring getValidOpenText(const std::wstring& s);
     std::wstring getValidCipherText(const std::wstring& s);
-    std::wstring removeNonAlpha(const std::wstring& s); // Новый публичный метод
+    std::wstring removeNonAlpha(const std::wstring& s);
 
 public:
     modAlphaCipher() = delete;
     modAlphaCipher(const std::wstring& skey);
     std::wstring encrypt(const std::wstring& open_text);
     std::wstring decrypt(const std::wstring& cipher_text);
-    std::wstring removeNonAlphaPublic(const std::wstring& s); // Публичный метод для проверки
+    std::wstring removeNonAlphaPublic(const std::wstring& s);
 };

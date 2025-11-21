@@ -53,7 +53,7 @@ std::string routeCipher::getValidCipherText(const std::string& s)
 
 routeCipher::routeCipher(int k)
 {
-    getValidKey(k); // Проверяем ключ
+    getValidKey(k);
     key = k;
 }
 
@@ -82,7 +82,6 @@ std::string routeCipher::encrypt(const std::string& open_text)
         size_t key_size = static_cast<size_t>(key);
         size_t rows = (text_length + key_size - 1) / key_size;
 
-        // Создаем таблицу и заполняем слева направо, сверху вниз
         std::vector<std::vector<char>> table(rows, std::vector<char>(key, ' '));
 
         size_t index = 0;
@@ -94,7 +93,6 @@ std::string routeCipher::encrypt(const std::string& open_text)
             }
         }
 
-        // Отладочный вывод таблицы
         std::cout << "Encryption table:" << std::endl;
         for(size_t i = 0; i < rows; i++) {
             for(int j = 0; j < key; j++) {
@@ -103,7 +101,6 @@ std::string routeCipher::encrypt(const std::string& open_text)
             std::cout << std::endl;
         }
 
-        // Читаем сверху вниз, справа налево
         std::string result;
         for(int j = key - 1; j >= 0; j--) {
             for(size_t i = 0; i < rows; i++) {
@@ -134,14 +131,11 @@ std::string routeCipher::decrypt(const std::string& cipher_text)
         size_t key_size = static_cast<size_t>(key);
         size_t rows = (text_length + key_size - 1) / key_size;
 
-        // Создаем пустую таблицу
         std::vector<std::vector<char>> table(rows, std::vector<char>(key, ' '));
 
-        // ЗАПОЛНЯЕМ таблицу из шифротекста по столбцам справа налево, сверху вниз
         size_t index = 0;
         for(int j = key - 1; j >= 0; j--) {
             for(size_t i = 0; i < rows; i++) {
-                // Вычисляем, есть ли символ в этой ячейке
                 size_t pos = i * key + j;
                 if (pos < text_length && index < text_length) {
                     table[i][j] = text[index++];
@@ -149,7 +143,6 @@ std::string routeCipher::decrypt(const std::string& cipher_text)
             }
         }
 
-        // Отладочный вывод таблицы
         std::cout << "Decryption table:" << std::endl;
         for(size_t i = 0; i < rows; i++) {
             for(int j = 0; j < key; j++) {
@@ -158,7 +151,6 @@ std::string routeCipher::decrypt(const std::string& cipher_text)
             std::cout << std::endl;
         }
 
-        // Читаем таблицу слева направо, сверху вниз
         std::string result;
         for(size_t i = 0; i < rows; i++) {
             for(int j = 0; j < key; j++) {

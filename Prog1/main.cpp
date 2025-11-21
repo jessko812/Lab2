@@ -21,7 +21,6 @@ void check(const std::wstring& Text, const std::wstring& key, bool destructCiphe
         std::wcout << L"Encrypted: " << cipherText << std::endl;
         std::wcout << L"Decrypted: " << decryptedText << std::endl;
 
-        // Используем публичный метод для сравнения
         std::wstring expected = cipher.removeNonAlphaPublic(Text);
         if(decryptedText == expected)
             std::wcout << L"Ok\n";
